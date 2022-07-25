@@ -1,8 +1,13 @@
-import './Home.css'
+import { POHeader }  from '../../components/'
+import { Main } from './styles'
 
 function Home() {
   return (
-    <h1>teste home</h1>
+    <>
+    <POHeader />
+    <Main>teste home</Main>
+    </>
+    
   )
 }
 
