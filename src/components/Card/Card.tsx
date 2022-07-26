@@ -1,9 +1,8 @@
-import { Header, Logo } from './styles'
+import { Card } from './styles'
 
-export function POHeader() {
+export function POCard() {
   return (
-    <Header>
-      <Logo href='/'> Poke e-commerce </Logo>
+    <Card>
       <img
         src='cart-icon.png'
         height={30}
@@ -11,6 +10,7 @@ export function POHeader() {
         onClick={() => {console.log('test')}}
         style={{cursor: 'pointer'}}
       />
-    </Header>
+      teste
+    </Card>
   )
 }
