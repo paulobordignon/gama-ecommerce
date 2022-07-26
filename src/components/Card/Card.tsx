@@ -1,16 +1,16 @@
-import { Card } from './styles'
+import { Button, Card } from './styles'
+import { ICard } from './types';
 
-export function POCard() {
+export function POCard({pokemon}: ICard) {
   return (
     <Card>
       <img
-        src='cart-icon.png'
-        height={30}
-        width={30}
-        onClick={() => {console.log('test')}}
-        style={{cursor: 'pointer'}}
+        src={pokemon?.sprites?.front_default}
+        height={75}
+        width={75}
       />
-      teste
+      {pokemon.name}
+      <Button onClick={() => {console.log('buyed')}}>Buy</Button>
     </Card>
   )
 }

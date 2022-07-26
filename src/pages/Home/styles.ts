@@ -5,7 +5,7 @@ export const Main = styled.main`
     justify-content: center;
     grid-template-columns: repeat(auto-fit, 20vh);
     gap: 4vh;
-    padding-top: 5vh;
+    padding-block: 5vh;
     padding-inline: 5vh;
 
     @media(min-width: 1024px) {
