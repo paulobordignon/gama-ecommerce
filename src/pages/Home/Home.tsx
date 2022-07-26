@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+
 import { POCard, POHeader } from '@src/components'
+import { pokeApi } from "@src/services/api";
 import { Main } from './styles'
 import { IPokemon } from './types';
-import { pokeApi } from "@src/services/api";
 
-function Home() {
+export function Home() {
   const [pokemons, setPokemons] = useState<IPokemon[]>([]);
   const [pokemonPosition, setPokemonPosition] = useState<number>(20);
   const [isLoading, setIsLoading] = useState<boolean>(true);
@@ -14,7 +15,7 @@ function Home() {
     setIsLoading(true);
     for (const [idx] of Array(pokemonPosition).entries()) {
       // THE INITIAL POSITION WILL BE DIFERENT OF 0 AFTER FIRST RUN
-      // BECAUSE THE POKEMONS IS ALREADY LOADED, THE INITIAL POSITION ALWAYS GROWS AFTER THE RUN
+      // BECAUSE THE POKEMONS IS ALREADY LOADED. THE INITIAL POSITION ALWAYS GROWS AFTER THE NEW RUN
       let initialPosition = pokemonPosition === 20 ? 0 : pokemonPosition - 10;
       if (idx >= initialPosition) {
         await pokeApi.get(`/pokemon/${idx+1}`).then(({ data }) => {
@@ -60,5 +61,3 @@ function Home() {
     </>
   )
 }
-
-export default Home

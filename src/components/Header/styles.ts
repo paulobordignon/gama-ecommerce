@@ -16,7 +16,6 @@ export const Header = styled.header`
     }
 `
 
-export const Logo = styled.a`
-    text-decoration: none;
+export const Logo = styled.p`
     color: rgba(255, 255, 255, 0.87);
 `
