@@ -6,7 +6,7 @@ import { ICard } from './types';
 import { RootStore } from '@src/store';
 import { setNewItem } from "@src/store/modules/cart";
 
-export const POCard = forwardRef<HTMLDivElement, ICard>(({pokemon}: ICard, ref) => {
+export const POCard = forwardRef<HTMLDivElement, ICard>(({pokemon, inCart=false}: ICard, ref ) => {
   const [wasBought, setWasBought] = useState<boolean>(false)
   const cartItems = useSelector((store: RootStore) => store.cartReduce)
   const dispatch = useDispatch()
@@ -27,18 +27,20 @@ export const POCard = forwardRef<HTMLDivElement, ICard>(({pokemon}: ICard, ref) 
         width={75}
       />
       {pokemon.name}
-      <Button
-        disabled={wasBought}
-        onClick={() => {
-          dispatch(setNewItem({
-            name: pokemon.name, 
-            url: pokemon?.sprites?.front_default
-          })); 
-          setWasBought(true);
-        }}
-      >
-        {wasBought? 'In cart' : 'Buy'}
-      </Button>
+      {!inCart && 
+        <Button
+          disabled={wasBought}
+          onClick={() => {
+            dispatch(setNewItem({
+              name: pokemon.name, 
+              url: pokemon?.sprites?.front_default
+            })); 
+            setWasBought(true);
+          }}
+        >
+          {wasBought? 'In cart' : 'Buy'}
+        </Button>
+      }
     </Card>
   )
 })

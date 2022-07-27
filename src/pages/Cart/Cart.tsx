@@ -1,8 +1,7 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { POHeader } from '@src/components'
-import { Main } from './styles'
+import { POCard, POHeader } from '@src/components'
+import { Button, Main, Nav } from './styles'
 import { RootStore } from '@src/store';
 import { removeItems } from '@src/store/modules/cart';
 
@@ -14,15 +13,26 @@ export function Cart() {
     <>
       <POHeader />
       <Main>
-        <button
+        <Button
           disabled={!cartItems.length}
           onClick={() => {
             dispatch(removeItems());
           }}
         >
-          Comprar
-        </button>
-        {cartItems.map((item) => <p>{item.name}</p>)}
+          Finalizar a compra
+        </Button>
+        <Nav>
+          {cartItems.map((item) => <POCard 
+            pokemon={
+              {
+                'name': item.name as string, 
+                sprites:{'front_default': item.url as string}
+              }
+            }
+            inCart={true}
+            key={item.name}
+          />)}
+        </Nav>
       </Main>
     </>
   )
