@@ -12,13 +12,13 @@ const cartReduce = createSlice({
     initialState: [] as ICartState,
     reducers: {
         setNewItem(state, action) {
-            Object.assign(state.push({
+            state.push({
                 name: action.payload.name,
                 url: action.payload.url,
-            }))
+            })
         },
-        removeItems(state,action) {
-            Object.assign(state, {})
+        removeItems() {
+            return []
         }
     }
 })
