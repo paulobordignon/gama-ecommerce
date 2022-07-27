@@ -1,9 +1,13 @@
+import { setNewItem } from "@src/store/modules/cart";
 import { forwardRef } from "react";
+import { useDispatch } from "react-redux";
 
 import { Button, Card } from './styles'
 import { ICard } from './types';
 
 export const POCard = forwardRef<HTMLDivElement, ICard>(({pokemon}: ICard, ref) => {
+  const dispatch = useDispatch();
+
   return (
     <Card ref={ref}>
       <img
@@ -12,7 +16,14 @@ export const POCard = forwardRef<HTMLDivElement, ICard>(({pokemon}: ICard, ref) 
         width={75}
       />
       {pokemon.name}
-      <Button onClick={() => {console.log('buyed')}}>Buy</Button>
+      <Button 
+        onClick={() => dispatch(setNewItem({
+          name: pokemon.name, 
+          url: pokemon?.sprites?.front_default
+        }))}
+      >
+        Buy
+      </Button>
     </Card>
   )
 })

@@ -8,7 +8,7 @@ export const Main = styled.main`
     padding-block: 5vh;
     padding-inline: 5vh;
 
-    @media(min-width: 1024px) {
+    @media(min-width: 1025px) {
         padding-inline: 25vh;
     }
 `

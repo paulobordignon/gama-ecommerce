@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
 
 import { POCard, POHeader } from '@src/components'
-import { pokeApi } from "@src/services/api";
+import { getPokemon } from "@src/services/PokeApi/getPokemon";
 import { Main } from './styles'
 import { IPokemon } from './types';
 
@@ -18,7 +18,7 @@ export function Home() {
       // BECAUSE THE POKEMONS IS ALREADY LOADED. THE INITIAL POSITION ALWAYS GROWS AFTER THE NEW RUN
       let initialPosition = pokemonPosition === 20 ? 0 : pokemonPosition - 10;
       if (idx >= initialPosition) {
-        await pokeApi.get(`/pokemon/${idx+1}`).then(({ data }) => {
+        await getPokemon({id: idx+1}).then(({ data }) => {
           setPokemons(prevState => [...prevState, data])
         });
       }
