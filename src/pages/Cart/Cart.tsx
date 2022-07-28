@@ -19,7 +19,7 @@ export function Cart() {
             dispatch(removeItems());
           }}
         >
-          Finalizar a compra
+          Complete Purchase
         </Button>
         <Nav>
           {cartItems.map((item) => <POCard 

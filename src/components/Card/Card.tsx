@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useState } from "react";
+import { forwardRef, memo, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Button, Card } from './styles'
@@ -6,7 +6,7 @@ import { ICard } from './types';
 import { RootStore } from '@src/store';
 import { setNewItem } from "@src/store/modules/cart";
 
-export const POCard = forwardRef<HTMLDivElement, ICard>(({pokemon, inCart=false}: ICard, ref ) => {
+const ItemCard = forwardRef<HTMLDivElement, ICard>(({pokemon, inCart=false}: ICard, ref ) => {
   const [wasBought, setWasBought] = useState<boolean>(false)
   const cartItems = useSelector((store: RootStore) => store.cartReduce)
   const dispatch = useDispatch()
@@ -44,3 +44,7 @@ export const POCard = forwardRef<HTMLDivElement, ICard>(({pokemon, inCart=false}
     </Card>
   )
 })
+
+// I IMPROVED THE PERFORMANCE USING MEMO, BECAUSE EACH NEW LOAD ALL OF CARDS WERE RE-RENDER WITH THE SAME PROPS.
+// NOW MEMO ONLY RENDER THE NEW CARDS.
+export const POCard = memo(ItemCard)
